@@ -1,14 +1,22 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
+    [SerializeField] ParticleSystem particleEffect;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnTriggerEnter2D(Collider2D collision)
     {
         int layerIndex = LayerMask.NameToLayer("Floor");
         if(collision.gameObject.layer==layerIndex)
         {
-            Debug.Log("You lose!");
+            particleEffect.Play();
+            Invoke("ReloadScene", 1f); //create delay in scene
+            // SceneManager.LoadScene(0);
         }
+    }
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(0);//load excisting scene with index or by name
     }
 }
