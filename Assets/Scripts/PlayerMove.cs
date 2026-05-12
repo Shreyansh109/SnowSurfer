@@ -3,11 +3,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    float rbTorque=2f;
+    float rbTorque=4f;
     private InputAction moveAction;
     Rigidbody2D rb2d;
+    Vector2 moveInput;
     [SerializeField] ParticleSystem particleEffect;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    SurfaceEffector2D surfaceEffector2D;
+    
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
@@ -17,13 +19,28 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Vector2 moveInput = moveAction.ReadValue<Vector2>();
-        // print(moveInput.x);
-        // rb2d.AddTorque(moveInput.x * rbTorque * -1);
+        RotatePlayer();
+        BoostPlayer();
+    }
 
-        Vector2 moveInput = moveAction.ReadValue<Vector2>();
+    void RotatePlayer()
+    {
+        moveInput = moveAction.ReadValue<Vector2>();
         // rb2d.AddTorque(rbTorque);
         rb2d.AddTorque(rbTorque * moveInput.x * -1);
+    }
+
+    void BoostPlayer()
+    {
+        surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>();
+        if(moveInput.y > 0)
+        {
+            surfaceEffector2D.speed = 30f;
+        }
+        else
+        {
+            surfaceEffector2D.speed = 20f;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
