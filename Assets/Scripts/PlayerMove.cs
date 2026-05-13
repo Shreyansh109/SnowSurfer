@@ -9,7 +9,10 @@ public class PlayerMove : MonoBehaviour
     Vector2 moveInput;
     [SerializeField] ParticleSystem particleEffect;
     SurfaceEffector2D surfaceEffector2D;
-    public bool crash=false;
+    bool crash=false;
+    float totalRotation;
+    int flipCount;
+    float previousRotation;
     
     void Start()
     {
@@ -23,6 +26,7 @@ public class PlayerMove : MonoBehaviour
         if(!crash){
             RotatePlayer();
             BoostPlayer();
+            CountRotation();
         }
     }
 
@@ -61,5 +65,24 @@ public class PlayerMove : MonoBehaviour
         {
             particleEffect.Stop();
         }
+    }
+
+    public void DisableControls()
+    {
+        crash=true;
+    }
+
+    private void CountRotation()
+    {
+        float currentRotation = transform.rotation.eulerAngles.z;
+        totalRotation += Mathf.DeltaAngle(previousRotation, currentRotation);
+        if(Mathf.Abs(totalRotation) >= 300f)
+        {
+            totalRotation = 0f; // Reset total rotation after a full spin
+            flipCount++;
+        }
+        // print("Total Rotation: " + totalRotation);
+        print("Flips: " + flipCount);
+        previousRotation = currentRotation;
     }
 }
