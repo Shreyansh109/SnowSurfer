@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
     Vector2 moveInput;
     [SerializeField] ParticleSystem particleEffect;
     SurfaceEffector2D surfaceEffector2D;
+    public bool crash=false;
     
     void Start()
     {
@@ -19,8 +20,10 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotatePlayer();
-        BoostPlayer();
+        if(!crash){
+            RotatePlayer();
+            BoostPlayer();
+        }
     }
 
     void RotatePlayer()
