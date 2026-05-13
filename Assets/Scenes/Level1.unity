@@ -2067,7 +2067,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   particleEffect: {fileID: 1946685508}
-  crash: 0
 --- !u!58 &854386418
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3645,7 +3644,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3666,7 +3665,7 @@ ParticleSystemRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -3782,7 +3781,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3887,9 +3886,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 1
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      minMaxState: 2
+      minColor: {r: 1, g: 0.8431373, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.2705882, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.020754695, b: 0.020754695, a: 1}
@@ -4417,7 +4416,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.82
       mode: 0
       spread: 0
       speed:
@@ -4536,7 +4535,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -18729,7 +18728,7 @@ Transform:
   m_GameObject: {fileID: 1968031777}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.24569988, y: -0.12220001, z: 10}
+  m_LocalPosition: {x: 0.1, y: 2.2, z: 10}
   m_LocalScale: {x: 2.6129997, y: 2.6129997, z: 2.6129997}
   m_ConstrainProportionsScale: 0
   m_Children: []

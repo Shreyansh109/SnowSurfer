@@ -72,7 +72,7 @@ public class PlayerMove : MonoBehaviour
         crash=true;
     }
 
-    private void CountRotation()
+    public int CountRotation()
     {
         float currentRotation = transform.rotation.eulerAngles.z;
         totalRotation += Mathf.DeltaAngle(previousRotation, currentRotation);
@@ -84,5 +84,6 @@ public class PlayerMove : MonoBehaviour
         // print("Total Rotation: " + totalRotation);
         print("Flips: " + flipCount);
         previousRotation = currentRotation;
+        return flipCount;
     }
 }
