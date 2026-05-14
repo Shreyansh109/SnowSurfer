@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     float totalRotation;
     int flipCount;
     float previousRotation;
+    bool speedup=false;
     
     void Start()
     {
@@ -27,6 +28,8 @@ public class PlayerMove : MonoBehaviour
             RotatePlayer();
             BoostPlayer();
             CountRotation();
+        }else{
+            surfaceEffector2D.speed = 3f;
         }
     }
 
@@ -40,11 +43,11 @@ public class PlayerMove : MonoBehaviour
     void BoostPlayer()
     {
         surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>();
-        if(moveInput.y > 0)
+        if(moveInput.y > 0 && !speedup)
         {
             surfaceEffector2D.speed = 30f;
         }
-        else
+        else if(moveInput.y == 0 && !speedup)
         {
             surfaceEffector2D.speed = 20f;
         }
@@ -85,5 +88,21 @@ public class PlayerMove : MonoBehaviour
         print("Flips: " + flipCount);
         previousRotation = currentRotation;
         return flipCount;
+    }
+
+    void ResetSpeed()
+    {
+        speedup=false;
+        surfaceEffector2D.speed = 20f;
+    }
+
+    public void ActivatePowerUp(PowerUpSO powerUpSO)
+    {
+        if(powerUpSO.GetPowerUpName() == "SpeedShort")
+        {
+            speedup = true;
+            surfaceEffector2D.speed = powerUpSO.GetPowerUpValue();
+            Invoke("ResetSpeed", powerUpSO.GetPowerUpDuration());
+        }
     }
 }
