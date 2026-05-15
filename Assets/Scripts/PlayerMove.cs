@@ -94,6 +94,10 @@ public class PlayerMove : MonoBehaviour
         speedup=false;
         surfaceEffector2D.speed = 20f;
     }
+    void ResetTorque()
+    {
+        rbTorque = 4f;
+    }
 
     public void ActivatePowerUp(PowerUpSO powerUpSO)
     {
@@ -102,6 +106,12 @@ public class PlayerMove : MonoBehaviour
             speedup = true;
             surfaceEffector2D.speed = powerUpSO.GetPowerUpValue();
             Invoke("ResetSpeed", powerUpSO.GetPowerUpDuration());
+        }
+        else if(powerUpSO.GetPowerUpName() == "Torque")
+        {
+            rbTorque = powerUpSO.GetPowerUpValue();
+            print("Torque: " + rbTorque);
+            Invoke("ResetTorque", powerUpSO.GetPowerUpDuration());
         }
     }
 }

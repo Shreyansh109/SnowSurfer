@@ -14,6 +14,7 @@ public class PowerupManager : MonoBehaviour
         if(collision.gameObject.layer==layerIndex)
         {
             playerMove.ActivatePowerUp(speedUP_short);
+            Destroy(gameObject, 0.2f);
         }
     }
 }
