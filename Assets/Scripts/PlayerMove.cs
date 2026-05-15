@@ -7,7 +7,8 @@ public class PlayerMove : MonoBehaviour
     private InputAction moveAction;
     Rigidbody2D rb2d;
     Vector2 moveInput;
-    [SerializeField] ParticleSystem particleEffect;
+    [SerializeField] ParticleSystem snowEffect;
+    [SerializeField] ParticleSystem powerupEffect;
     SurfaceEffector2D surfaceEffector2D;
     bool crash=false;
     float totalRotation;
@@ -58,7 +59,7 @@ public class PlayerMove : MonoBehaviour
         int layerIndex=LayerMask.NameToLayer("Floor");
         if(collision.gameObject.layer==layerIndex)
         {
-            particleEffect.Play();
+            snowEffect.Play();
         }
     }
     void OnCollisionExit2D(Collision2D collision)
@@ -66,7 +67,7 @@ public class PlayerMove : MonoBehaviour
         int layerIndex=LayerMask.NameToLayer("Floor");
         if(collision.gameObject.layer==layerIndex)
         {
-            particleEffect.Stop();
+            snowEffect.Stop();
         }
     }
 
@@ -93,24 +94,30 @@ public class PlayerMove : MonoBehaviour
     {
         speedup=false;
         surfaceEffector2D.speed = 20f;
+        powerupEffect.Stop();
     }
     void ResetTorque()
     {
         rbTorque = 4f;
+        powerupEffect.Stop();
     }
 
     public void ActivatePowerUp(PowerUpSO powerUpSO)
     {
+        var main = powerupEffect.main;
         if(powerUpSO.GetPowerUpName() == "SpeedShort")
         {
             speedup = true;
             surfaceEffector2D.speed = powerUpSO.GetPowerUpValue();
+            main.startColor = new Color(1f, 0.5f, 0f); // Orange
+            powerupEffect.Play();
             Invoke("ResetSpeed", powerUpSO.GetPowerUpDuration());
         }
         else if(powerUpSO.GetPowerUpName() == "Torque")
         {
             rbTorque = powerUpSO.GetPowerUpValue();
-            print("Torque: " + rbTorque);
+            main.startColor = new Color(0.659f, 0.333f, 0.969f); // Purple
+            powerupEffect.Play();
             Invoke("ResetTorque", powerUpSO.GetPowerUpDuration());
         }
     }
