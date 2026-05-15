@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TorqueUp
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp
   powerUpName: Torque
-  powerUpValue: 6
+  powerUpValue: 8
   powerUpDuration: 2

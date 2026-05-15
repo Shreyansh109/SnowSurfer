@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     Vector2 moveInput;
     [SerializeField] ParticleSystem snowEffect;
     [SerializeField] ParticleSystem powerupEffect;
+    Winning winning;
     SurfaceEffector2D surfaceEffector2D;
     bool crash=false;
     float totalRotation;
@@ -16,9 +18,11 @@ public class PlayerMove : MonoBehaviour
     float previousRotation;
     bool speedup=false;
     
+    
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
+        winning = FindFirstObjectByType<Winning>();
         surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>();
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -44,11 +48,11 @@ public class PlayerMove : MonoBehaviour
 
     void BoostPlayer()
     {
-        if(moveInput.y > 0 && !speedup)
+        if(moveInput.y > 0 && !speedup && !winning.Win())
         {
             surfaceEffector2D.speed = 30f;
         }
-        else if(moveInput.y == 0 && !speedup)
+        else if(moveInput.y == 0 && !speedup && !winning.Win())
         {
             surfaceEffector2D.speed = 20f;
         }
