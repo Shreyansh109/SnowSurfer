@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd966bf6519f7e546a2ccd2701790994, type: 3}
   m_Name: SpeedUp_Short
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp
-  powerUpName: Speed
+  powerUpName: SpeedShort
   powerUpValue: 50
   powerUpDuration: 2

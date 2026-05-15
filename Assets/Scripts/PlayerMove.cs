@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
+        surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -42,7 +43,6 @@ public class PlayerMove : MonoBehaviour
 
     void BoostPlayer()
     {
-        surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>();
         if(moveInput.y > 0 && !speedup)
         {
             surfaceEffector2D.speed = 30f;
@@ -85,7 +85,6 @@ public class PlayerMove : MonoBehaviour
             flipCount++;
         }
         // print("Total Rotation: " + totalRotation);
-        print("Flips: " + flipCount);
         previousRotation = currentRotation;
         return flipCount;
     }

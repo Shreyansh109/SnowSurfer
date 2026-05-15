@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd966bf6519f7e546a2ccd2701790994, type: 3}
   m_Name: SpeedUp_Long
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpSO
-  powerUpName: 
-  powerUpValue: 0
-  powerUpDuration: 0
+  powerUpName: SpeedLong
+  powerUpValue: 50
+  powerUpDuration: 6

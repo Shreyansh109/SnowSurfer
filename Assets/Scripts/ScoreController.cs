@@ -12,7 +12,7 @@ public class ScoreController : MonoBehaviour
 
     void Start()
     {
-        scoreText.text = "Score: 1";
+        scoreText.text = "Score: 0";
         playerMove = FindFirstObjectByType<PlayerMove>();
     }
 
